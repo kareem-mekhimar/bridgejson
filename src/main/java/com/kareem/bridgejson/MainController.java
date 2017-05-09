@@ -42,7 +42,7 @@ public class MainController{
     {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()  ;
         
-        String url = request.getRequestURL().toString() ;
+        String url = "http://"+request.getServerName()+"/resources/db/" ;
         
         Files.copy(part.getInputStream(), Paths.get(System.getProperty("jboss.server.data.dir")+"/db.json")
                 ,StandardCopyOption.REPLACE_EXISTING) ;
@@ -51,7 +51,7 @@ public class MainController{
 
         jsonObject.keySet().stream().forEach(k -> {
         
-            urlsList.add(url+"/"+k) ;
+            urlsList.add(url+k) ;
         });
     }
 
